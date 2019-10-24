@@ -1,0 +1,33 @@
+---
+title: "Mid Semester Practical Exam 1740256"
+author: "Jeevan"
+date: "11/09/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+data <- read_excel("C:/Users/Jeevan/Desktop/Christ University/Statistics/Linear Regression/death rate-mid sem practical 2.xlsx")
+# View(data)
+attach(data)
+fullmodel = lm(Y~.,data = data)
+summary(fullmodel)
+step(fullmodel,direction = "backward")
+be = lm(Y~X1+X2+X3+X4,data = data)
+summary(be)
+confint(fullmodel,level = 0.95)
+confint(be,level = 0.95)
+fit_best = fitted.values(fullmodel)
+fit_best
+sum(fit_best)
+sum(Y)
+fit = fitted.values(be)
+fit
+sum(Y)
+sum(fit)
+summary(be)$adj.r.squared
+```

@@ -1,0 +1,49 @@
+---
+title: "Fitting A Linear Regression Model"
+author: "Jeevan"
+date: "12/06/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\section{AIM} 
+\subsection{A rocket motor is manufactured by bonding together two types of propellants, an igniter and a sustainer. The shear strength of the bond (Y) is thought to be a linear function of the age of the propellant (X) when the motor is cast.
+Fit a simple linear regression to the data that involving the following steps by using R.
+a)	Plot the scatter diagram for the data .
+b)	Estimate the parameters of a simple linear regression model.
+c)	Obtain the fitted values of the model.
+d)	Show that the sum of fitted values and sum of observed values of Y are equal.
+e)	Obtain the residuals and show that the sum of residuals is zero.}
+
+\section{PROCEDURE}
+```{r}
+library(readxl)
+lab1 <- read_excel("C:/Users/Jeevan/Desktop/Christ University/Statistics/Linear Regression/lab1.xlsx")
+View(lab1)
+attach(lab1)
+```
+\subsection{The readxl library helps us in importing the excel sheet for our regression analysis.} 
+```{r}
+plot(age,sheer,main="Scatter Plot")
+scatter.smooth(age,sheer,main = "Fitted Linear Scatter Plot")
+```
+The above figure shows a scatter plot for the data with a fitted linear regression model.
+```{r}
+model=lm(sheer~age)
+model
+```
+Here we fit a linear model to the variables which gives us the slope intercept. 
+```{r}
+fit = fitted.values(model)
+fit
+```
+\subsection{We then found the predicted values for the 20 entries in the dataset.} 
+```{r}
+res=resid(model)
+sum(res)
+sum(fit)
+sum(sheer)
+```
+\subsection{The residuals have been found above and this tells us that the sum of fitted values and sum of observed values of Y are equal. Also the sum of residuals is zero.}

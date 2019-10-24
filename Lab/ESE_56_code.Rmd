@@ -1,0 +1,22 @@
+---
+title: "ESE_56"
+author: "Jeevan ~ 1740256"
+date: "30/09/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+library(GGally)
+ESE_data <- read_excel("C:/Users/Jeevan/Desktop/Christ University/Statistics/Linear Regression/ESE_data.xlsx")
+# View(ESE_data)
+attach(ESE_data)
+fit = lm(y~.,data = ESE_data)
+step(fit,direction = "backward")
+summary(fit)
+plot(fit)
+```

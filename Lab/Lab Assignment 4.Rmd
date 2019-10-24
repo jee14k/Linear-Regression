@@ -1,0 +1,57 @@
+---
+title: "Lab Assignment 4"
+author: "Jeevan"
+date: "14/08/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+lab_data4 <- read_excel("C:/Users/Jeevan/Desktop/Christ University/Statistics/Linear Regression/lab-data4.xlsx")
+View(lab_data4)
+attach(lab_data4)
+```
+
+```{r}
+mlrm = lm(DeliveryTimeY~NumberOfCasesX1+DistanceX2)
+mlrm
+```
+
+```{r}
+predicted_dt=fitted.values(mlrm)
+predicted_dt
+```
+
+```{r}
+error_terms=residuals(mlrm)
+error_terms
+```
+
+```{r}
+summary(mlrm)
+```
+
+```{r}
+confint(mlrm, level = .95)
+```
+
+```{r}
+anova(mlrm)
+```
+
+```{r}
+newdata = data.frame(NumberOfCasesX1=8,DistanceX2=275)
+```
+
+```{r}
+predict(mlrm,newdata)
+```
+
+```{r}
+ci=predict(mlrm, newdata, interval="confidence", level=.99)
+ci
+```

@@ -1,0 +1,33 @@
+---
+title: "Lab 8"
+author: "Jeevan"
+date: "04/09/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+#Importing the dataset
+library(readxl)
+data <- read_excel("C:/Users/Jeevan/Desktop/Christ University/Statistics/Linear Regression/lab-data8.xlsx")
+View(data)
+attach(data)
+#Linear Regression Model
+mlmodel=lm(DeliveryTimeY~NumberOfCasesX1+DistanceX2, data=data)
+summary(mlmodel)
+#Residual Plots
+plot(mlmodel) 
+#(i) Data is deviating from normal
+#(ii) most frequency used plot to check normality of error term
+#(iii) scale location plot ~ deviation of residuals from straight line/information about influential objects
+#(iv) 
+r=resid(mlmodel) 
+r
+p=fitted(mlmodel)
+p
+qqnorm(r) # to plot the q-q plot
+```

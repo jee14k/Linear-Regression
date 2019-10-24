@@ -1,0 +1,41 @@
+---
+title: "MultiCollinearity"
+author: "Jeevan ~ 1740256"
+date: "18/09/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("GGally")
+# install.packages("mctest")
+library(GGally)
+library(readxl)
+library(mctest)
+multicollinearitydata <- read_excel("C:/Users/Jeevan/Desktop/Christ University/Statistics/Linear Regression/multicollinearitydata.xlsx")
+# View(multicollinearitydata)
+attach(multicollinearitydata)
+fit = lm(y~.,data = multicollinearitydata)
+formula(fit)
+plot(fit)
+ggpairs(multicollinearitydata)
+x = multicollinearitydata[,2:10]
+x
+omcdiag(x,multicollinearitydata$y,data = multicollinearitydata)
+imcdiag(x,multicollinearitydata$y)
+summary(fit)
+new = multicollinearitydata[,-7]
+new
+fit1 = lm(y~.,data = new)
+formula(fit1)
+summary(fit1)
+xx = new[,2:9]
+xx
+imcdiag(xx,new$y)
+step(fit1,direction = "both")
+be = lm(y~x1+x3+x4+x7,data = new)
+summary(be)
+```
